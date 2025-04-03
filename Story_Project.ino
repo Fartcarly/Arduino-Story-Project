@@ -17,13 +17,13 @@ Servo worldServo; // moves the people of the world holding hands
 
 void setup() {
   // put your setup code here, to run once:
-armServo.attach(8); //attaches arm servo to pin 8
+armServo.attach(6); //attaches arm servo to pin 8
 pinMode(switchPin1Light, INPUT);
 
-runServo.attach(7);
+runServo.attach(5);
 pinMode(switchPin3Bullet, INPUT);
 
-worldServo.attach(6);
+worldServo.attach(4);
 pinMode(switchPin4Stand, INPUT);
 }
 
