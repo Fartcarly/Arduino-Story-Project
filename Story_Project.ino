@@ -7,9 +7,14 @@ const int newsLed1 = 12; //news lights scene 3
 const int newsLed2 = 11; 
 const int switchPin1Light = 10; //set up light switch pin with alligator clips
   int switchState1;  //tracks the state of the switch
-const int switchPin2Bullet = 9; //bullet switch scene 3
+const int switchPin2Bullet = 9; //bullet switch scene 
+  int switchState2;
 const int switchPin3Slider = 8; //slider twitter switch for news scene 4
+  int switchState3; 
 const int switchPin4Stand =  7;//luigi stand switch scene 5
+  int switchState4;
+
+int SceneNumber = 2; //tells the program which scene is currently being ran
 
 Servo armServo; //creates servo variable for moving luigi's arm
 Servo runServo; //luigi running to mcdonalds motor
@@ -77,6 +82,8 @@ void moveMotor3() {  //moves world Servo
 
 void loop() {
   // put your main code here, to run repeatedly:
+
+//-------SCENE 2 (LIGHTBULB SCENE)-----------//
   switchState1 = digitalRead(switchPin1Light);
 if (digitalRead(switchPin1Light)==HIGH){
   digitalWrite(ledPin1, LOW); //turn light on
@@ -90,4 +97,45 @@ if (digitalRead(switchPin1Light)==HIGH){
   }
   delay(100);
   }
-}
+//--------SCENE 3 (BULLET)-----------//
+switchState2 = digitalRead(switchPin2Bullet);
+if (digitalRead(switchPin2Bullet)==HIGH){
+  moveMotor2();
+  Serial.println("Button Pressed"); // Print message when button is pressed
+
+}else{
+  if (digitalRead(switchPin2Bullet)==LOW){
+    Serial.println("Button Released"); // Print message when button is not pressed
+  }
+  delay(100);
+  }
+//-------SCENE 4 (TWITTER)--------//
+
+//I'm thinking for this scene, there could be a track on the floor that has a swich at the END that triggers this interaction. the twitter symbol could be on a stick that the player moves
+  switchState3 = digitalRead(switchPin3Slider);
+if (digitalRead(switchPin3Slider)==HIGH){
+  digitalWrite(newsLed1, LOW); //turns lights on
+  digitalWrite(newsLed2, LOW);
+  Serial.println("Button Pressed"); // Print message when button is pressed
+
+}else{
+  if (digitalRead(switchPin1Light)==LOW){
+  digitalWrite(newsLed1, HIGH); //turns lights OFF
+  digitalWrite(newsLed2, HIGH);
+    Serial.println("Button Released"); // Print message when button is not pressed
+  }
+  delay(100);
+  }
+//--------SCENE 3 (BULLET)-----------//
+switchState4 = digitalRead(switchPin4Stand);
+if (digitalRead(switchPin4Stand)==HIGH){
+  moveMotor3();
+  Serial.println("Button Pressed"); // Print message when button is pressed
+
+}else{
+  if (digitalRead(switchPin4Stand)==LOW){
+    Serial.println("Button Released"); // Print message when button is not pressed
+  }
+  delay(100);
+  }
+} //FINAL BRACKET
